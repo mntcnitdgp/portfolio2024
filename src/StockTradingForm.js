@@ -7,30 +7,50 @@ function StockTradingForm() {
       currentAmount: 10000,
       buyStock: { name: "", count: 0 },
       sellStock: { name: "", count: 0 },
+      A: 0,
+      B: 0,
+      C: 0,
+      D: 0,
     },
     {
       id: 2,
       currentAmount: 10000,
       buyStock: { name: "", count: 0 },
       sellStock: { name: "", count: 0 },
+      A: 0,
+      B: 0,
+      C: 0,
+      D: 0,
     },
     {
       id: 3,
       currentAmount: 10000,
       buyStock: { name: "", count: 0 },
       sellStock: { name: "", count: 0 },
+      A: 0,
+      B: 0,
+      C: 0,
+      D: 0,
     },
     {
       id: 4,
       currentAmount: 10000,
       buyStock: { name: "", count: 0 },
       sellStock: { name: "", count: 0 },
+      A: 0,
+      B: 0,
+      C: 0,
+      D: 0,
     },
     {
       id: 5,
       currentAmount: 10000,
       buyStock: { name: "", count: 0 },
       sellStock: { name: "", count: 0 },
+      A: 0,
+      B: 0,
+      C: 0,
+      D: 0,
     },
   ]);
 
@@ -62,35 +82,36 @@ function StockTradingForm() {
     );
   };
 
-  const handleBuySellSubmit = (e, id, type) => {
-    e.preventDefault();
+  const handleBuySubmit = (e, id, type) => {
     const person = persons.find((person) => person.id === id);
     const info = stockInfo.find((info) => info.name === person.buyStock.name);
     const price = info.price;
     const count = person.buyStock.count;
     const total = price * count;
-
-    if (type === "buyStock") {
-      if (person.currentAmount >= total) {
-        setpersons((prevState) =>
-          prevState.map((person) =>
-            person.id === id
-              ? { ...person, ["currentAmount"]: person.currentAmount - total }
-              : person
-          )
-        );
-      } else {
-        alert("You do not have enough funds to buy this stock.");
-      }
-    } else if (type === "sellStock") {
+    if (person.currentAmount >= total) {
       setpersons((prevState) =>
         prevState.map((person) =>
           person.id === id
-            ? { ...person, ["currentAmount"]: person.currentAmount + total }
+            ? { ...person, ["currentAmount"]: person.currentAmount - total }
             : person
         )
       );
     }
+  };
+
+  const handleSellSubmit = (e, id, type) => {
+    const person = persons.find((person) => person.id === id);
+    const info = stockInfo.find((info) => info.name === person.sellStock.name);
+    const price = info.price;
+    const count = person.sellStock.count;
+    const total = price * count;
+    setpersons((prevState) =>
+      prevState.map((person) =>
+        person.id === id
+          ? { ...person, ["currentAmount"]: person.currentAmount + total }
+          : person
+      )
+    );
   };
 
   const handleStockInfoChange = (e, id, field) => {
@@ -106,7 +127,7 @@ function StockTradingForm() {
 
   return (
     <div>
-      <h1 className="flex flex-col items-center justify-between text-3xl">
+      <h1 className="flex flex-col items-center mb-6 font-serif justify-between text-6xl">
         PORTFOLIO VENTURES
       </h1>
       <div className="mr-20 container m-auto grid grid-cols-5 ">
@@ -158,7 +179,7 @@ function StockTradingForm() {
               </label>
             </div>
             <button
-              onClick={(e) => handleBuySellSubmit(e, person.id, "buyStock")}
+              onClick={(e) => handleBuySubmit(e, person.id, "buyStock")}
               className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 mt-2"
             >
               BUY STOCK
@@ -195,7 +216,7 @@ function StockTradingForm() {
                 />
               </label>
               <button
-                onClick={(e) => handleBuySellSubmit(e, person.id, "sellStock")}
+                onClick={(e) => handleSellSubmit(e, person.id, "sellStock")}
                 className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 mt-2"
               >
                 SELL STOCK
