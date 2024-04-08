@@ -7,58 +7,38 @@ function StockTradingForm() {
       currentAmount: 10000,
       buyStock: { name: "", count: 0 },
       sellStock: { name: "", count: 0 },
-      A: 0,
-      B: 0,
-      C: 0,
-      D: 0,
     },
     {
       id: 2,
       currentAmount: 10000,
       buyStock: { name: "", count: 0 },
       sellStock: { name: "", count: 0 },
-      A: 0,
-      B: 0,
-      C: 0,
-      D: 0,
     },
     {
       id: 3,
       currentAmount: 10000,
       buyStock: { name: "", count: 0 },
       sellStock: { name: "", count: 0 },
-      A: 0,
-      B: 0,
-      C: 0,
-      D: 0,
     },
     {
       id: 4,
       currentAmount: 10000,
       buyStock: { name: "", count: 0 },
       sellStock: { name: "", count: 0 },
-      A: 0,
-      B: 0,
-      C: 0,
-      D: 0,
     },
     {
       id: 5,
       currentAmount: 10000,
       buyStock: { name: "", count: 0 },
       sellStock: { name: "", count: 0 },
-      A: 0,
-      B: 0,
-      C: 0,
-      D: 0,
     },
   ]);
 
   const [stockInfo, setStockInfo] = useState([
-    { id: 1, name: "A", price: 100 },
-    { id: 2, name: "B", price: 200 },
-    { id: 3, name: "C", price: 300 },
-    { id: 4, name: "D", price: 400 },
+    { id: 1, name: "RELIANCE", price: 100 },
+    { id: 2, name: "TATA_STEEL", price: 200 },
+    { id: 3, name: "YES_BANK", price: 300 },
+    { id: 4, name: "PSB", price: 400 },
   ]);
 
   const handleChange = (e, id, type) => {
@@ -86,13 +66,17 @@ function StockTradingForm() {
     const person = persons.find((person) => person.id === id);
     const info = stockInfo.find((info) => info.name === person.buyStock.name);
     const price = info.price;
+    const nm = info.name;
     const count = person.buyStock.count;
     const total = price * count;
     if (person.currentAmount >= total) {
       setpersons((prevState) =>
         prevState.map((person) =>
           person.id === id
-            ? { ...person, ["currentAmount"]: person.currentAmount - total }
+            ? {
+                ...person,
+                ["currentAmount"]: person.currentAmount - total,
+              }
             : person
         )
       );
@@ -103,12 +87,16 @@ function StockTradingForm() {
     const person = persons.find((person) => person.id === id);
     const info = stockInfo.find((info) => info.name === person.sellStock.name);
     const price = info.price;
+
     const count = person.sellStock.count;
     const total = price * count;
     setpersons((prevState) =>
       prevState.map((person) =>
         person.id === id
-          ? { ...person, ["currentAmount"]: person.currentAmount + total }
+          ? {
+              ...person,
+              ["currentAmount"]: person.currentAmount + total,
+            }
           : person
       )
     );
@@ -123,7 +111,7 @@ function StockTradingForm() {
     );
   };
 
-  const stockNames = ["A", "B", "C", "D"];
+  const stockNames = ["RELIANCE", "TATA_STEEL", "YES_BANK", "PSB"];
 
   return (
     <div>
