@@ -35,10 +35,10 @@ function StockTradingForm() {
   ]);
 
   const [stockInfo, setStockInfo] = useState([
-    { id: 1, name: "RELIANCE", price: 100 },
-    { id: 2, name: "TATA_STEEL", price: 200 },
-    { id: 3, name: "YES_BANK", price: 300 },
-    { id: 4, name: "PSB", price: 400 },
+    { id: 1, name: "ROLLS_ROYCE", price: 100 },
+    { id: 2, name: "HDBC_BANK", price: 200 },
+    { id: 3, name: "BP", price: 300 },
+    { id: 4, name: "VODAFONE", price: 400 },
   ]);
 
   const handleChange = (e, id, type) => {
@@ -111,7 +111,7 @@ function StockTradingForm() {
     );
   };
 
-  const stockNames = ["RELIANCE", "TATA_STEEL", "YES_BANK", "PSB"];
+  const stockNames = ["ROLLS_ROYCE", "HDBC_BANK", "BP", "VODAFONE"];
 
   return (
     <div>
